@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/Main.css" />
 </head>
 <body>
-    <div class="wrapper"> 
+    <div class="wrapper">
         <header class="container">
             <span class="logo">Spacetime</span>
             <nav>
@@ -16,8 +16,8 @@
                     <label class="menu-btn" for="menu-toggle"><span></span></label>
                     <ul class="menubox">
                         <li class="active"><a class="menu-item" href="#">HOME</a></li>
-                        <li><a class="menu-item" href="#">SEE PHOTO</a></li>
-                        <li><a class="menu-item" href="#">FAVOURITES</a></li>
+                        <li><a class="menu-item" href="pictures.html">SEE PHOTO</a></li>
+                        <li><a class="menu-item" href="favs.html">FAVOURITES</a></li>
                     </ul>
                 </div>
             </nav>
@@ -28,9 +28,8 @@
                 <h1>Greetings, User!</h1>
                 <h2>There you can find out what photo NASA did on the date you'll enter.</h2>
 
-                <button class="btn">SEE PHOTO</button>
             </div>
-            <img src="image/moon.png" alt="" />
+            <img src="css/image/moon.png" alt="" />
 
             <div class="hero--text">
                 <p>This website will take your date and go straight to NASA's archives to show it specifically to you!</p>
@@ -39,5 +38,31 @@
         </div>
     </div>
 
+    <div class="features">
+        <div class="container">
+
+            <p>
+                The website utilizes NASA’s open API to access its archives,
+                which contain a vast collection of images along with detailed information about them.
+                While the European Space Agency (ESA) also maintains such archives,
+                NASA’s archives are much better suited for this particular purpose.
+                NASA even publishes images captured by European Space Agency satellites.
+                You can enter any date, and the site will automatically query the archives to display an image taken on that exact day.
+            </p>
+
+            <div class="register">
+                <div class="container">
+                    <form action="save.php" method="post">
+                        <input type="email" name="email" placeholder="Enter your e-mail">
+                        <button id="signup">SIGN UP</button>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    
 </body>
 </html>
