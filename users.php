@@ -5,10 +5,7 @@ if (($_SESSION['email'] ?? '') !== 'perowa.d.m@gmail.com') {
     exit;
 }
 
-$mi = new mysqli("localhost", "root", "", "baseformywebcite");
-if ($mi->connect_errno) {
-    die($mi->connect_error);
-}
+require_once 'db.php';
 
 // 1. UPDATE
 if (isset($_POST['update_user'])) {

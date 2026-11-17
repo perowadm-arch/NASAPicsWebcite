@@ -1,9 +1,6 @@
 <?php
 session_start();
-$mi = new mysqli("localhost", "root", "", "baseformywebcite");
-if ($mi->connect_errno) {
-    die($mi->connect_error);
-}
+require_once 'db.php';
 
 $email = trim($_POST['email'] ?? '');
 if ($email === '') {

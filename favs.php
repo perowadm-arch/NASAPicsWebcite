@@ -5,10 +5,7 @@ if (!isset($_SESSION['email'])) {
     exit;
 }
 
-$mi = new mysqli("localhost", "root", "", "baseformywebcite");
-if ($mi->connect_errno) {
-    die($mi->connect_error);
-}
+require_once 'db.php';
 
 $mail_status = "";
 
@@ -67,7 +64,8 @@ if (isset($_POST['send_email'])) {
 
     $subject = "NASA Photo from SpaceTime ($date_pic)";
     $message = "Hello, $to!\r\n\r\nHere is your favourite NASA photo for $date_pic:\r\n$link_pic";
-    $headers = "From: SpaceTime <spacetime.project.mail@gmail.com>\r\nContent-Type: text/plain; charset=UTF-8\r\n";
+    $headers = "From: SpaceTime <spacetime.project.mail@gmail.com>
+    \r\nContent-Type: text/plain; charset=UTF-8\r\n";
     @mail($to, $subject, $message, $headers);
     $mail_status = "Photo ($date_pic) has been sent to " . htmlspecialchars($to) . "!";
     }
