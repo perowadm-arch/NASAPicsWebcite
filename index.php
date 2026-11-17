@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +17,14 @@
                     <label class="menu-btn" for="menu-toggle"><span></span></label>
                     <ul class="menubox">
                         <li class="active"><a class="menu-item" href="#">HOME</a></li>
-                        <li><a class="menu-item" href="pictures.html">SEE PHOTO</a></li>
-                        <li><a class="menu-item" href="favs.html">FAVOURITES</a></li>
+                        <li><a class="menu-item" href="pictures.php">SEE PHOTO</a></li>
+                        <li><a class="menu-item" href="favs.php">FAVOURITES</a></li>
+                        <?php if (($_SESSION['email'] ?? '') === 'perowa.d.m@gmail.com'): ?>
+                        <li><a class="menu-item" href="users.php">ADMIN PANEL</a></li>
+                        <?php endif; ?>
+                        <?php if (isset($_SESSION['email'])): ?>
+                        <li><a class="menu-item" href="logout.php">LOGOUT</a></li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </nav>
@@ -25,7 +32,8 @@
 
         <div class="hero container">
             <div class="hero--info">
-                <h1>Greetings, User!</h1>
+                <p id="clock"></p>
+                <h1>Greetings, <?php echo htmlspecialchars($_SESSION['email'] ?? 'User'); ?></h1>
                 <h2>There you can find out what photo NASA did on the date you'll enter.</h2>
 
             </div>
@@ -52,10 +60,10 @@
 
             <div class="register">
                 <div class="container">
-                    <form action="save.php" method="post">
+                    <form id="regForm" action="save.php" method="post" onsubmit="return checkForm(this);">
                         <input type="email" name="email" placeholder="Enter your e-mail">
-                        <button id="signup">SIGN UP</button>
-
+                        <button type="submit" id="signup">SIGN UP</button>
+                        <p>To go to your favourites...</p>
                     </form>
                 </div>
             </div>
@@ -63,6 +71,26 @@
         </div>
     </div>
 
-    
+<script>
+function updateClock() {
+    const now = new Date();
+    document.getElementById("clock").textContent = now.toLocaleTimeString();
+}
+updateClock();
+    setInterval(updateClock, 1000);
+
+    function checkForm(form) {
+        const email = form.email.value.trim();
+        const regMail = new RegExp("^[0-9a-z_.-]+@[0-9a-z_.-]+\\.[a-z]{2,6}$", "i");
+
+        if (!regMail.test(email)) {
+            alert("Please enter a valid e-mail address!");
+            return false;
+        }
+        return true;
+    }
+</script>    
+
+
 </body>
 </html>
