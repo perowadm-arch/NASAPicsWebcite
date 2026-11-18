@@ -5,7 +5,7 @@ require_once 'db.php';
 $email = trim($_POST['email'] ?? '');
 if ($email === '') {
     die("Enter your e-mail");
-}
+} 
 
 $stmt = $mi->prepare("SELECT ID_User FROM email WHERE Email_User = ?");
 $stmt->bind_param("s", $email);
